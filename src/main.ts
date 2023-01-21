@@ -224,6 +224,10 @@ function drawScore() {
   ctx.fillText('Score: ' + score, 50, 75);
   ctx.fillStyle = 'white';
   ctx.fillText('Score: ' + score, 55, 80);
+  ctx.save();
+  ctx.font = '1rem Imapact';
+  ctx.fillText('🏆 Tap them before they get to the other end!', 50, 110);
+  ctx.restore();
 }
 
 function gameOver() {
