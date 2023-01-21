@@ -188,7 +188,7 @@ class Particle {
   radius: number;
   maxRadius: number;
   color: string;
-  markFordeleteation: boolean;
+  markedForDeletion: boolean;
   speedX: number;
 
   constructor(x: number, y: number, size: number, color: string) {
@@ -198,14 +198,14 @@ class Particle {
     this.radius = (Math.random() * this.size) / 10;
     this.maxRadius = Math.random() * 20 + 35;
     this.color = color;
-    this.markFordeleteation = false;
+    this.markedForDeletion = false;
     this.speedX = Math.random() * 1 + 0.5;
   }
 
   update() {
     this.x += this.speedX;
     this.radius += 0.2;
-    if (this.radius > this.maxRadius - 5) this.markFordeleteation = true;
+    if (this.radius > this.maxRadius - 5) this.markedForDeletion = true;
   }
 
   draw() {
@@ -286,11 +286,15 @@ function animate(timestamp: number) {
     timeToNextRaven = 0;
   }
   drawScore();
+
   [...particles, ...ravens, ...explosions].forEach((object) =>
     object.update(deltaTime),
   );
   [...particles, ...ravens, ...explosions].forEach((object) => object.draw());
+
   ravens = ravens.filter((object) => !object.markedForDeletion);
+  explosions = explosions.filter((object) => !object.markedForDeletion);
+  particles = particles.filter((object) => !object.markedForDeletion);
 
   if (!gg) requestAnimationFrame(animate);
   else gameOver();
