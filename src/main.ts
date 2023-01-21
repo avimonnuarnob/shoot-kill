@@ -243,6 +243,13 @@ function gameOver() {
     canvas.width / 2 + 5,
     canvas.height / 2 + 5,
   );
+
+  const e = document.createElement('div');
+  e.innerHTML = 'Restart';
+  e.className = 'game-button red';
+  document.body.appendChild(e);
+
+  e.addEventListener('click', () => window.location.reload());
 }
 
 window.addEventListener('click', (e) => {
